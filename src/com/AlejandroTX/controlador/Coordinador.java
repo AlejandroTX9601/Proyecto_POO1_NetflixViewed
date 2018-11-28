@@ -5,6 +5,7 @@
  */
 package com.AlejandroTX.controlador;
 
+import com.AlejandroTX.vista.*;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -62,6 +63,7 @@ public class Coordinador {
     private static void ShowMovies(){
         int exit =0;
         do {            
+            new Movie().setVisible(true);
             System.out.println("");
             System.out.println(":: MOVIES ::");
             System.out.println("");
@@ -70,6 +72,7 @@ public class Coordinador {
     private static void ShowSeries(){
         int exit =0;
         do {            
+            new Series().setVisible(true);
             System.out.println("");
             System.out.println(":: SERIES ::");
             System.out.println("");
@@ -85,7 +88,8 @@ public class Coordinador {
     }
    private static void ShowBooks(){
         int exit =0;
-        do {            
+        do {
+            new Book().setVisible(true);            
             System.out.println("");
             System.out.println(":: BOOKS ::");
             System.out.println("");
@@ -93,7 +97,9 @@ public class Coordinador {
     }
    private static void ShowMagazine(){
         int exit =0;
-        do {            
+        
+        do {
+            new Magazine().setVisible(true);            
             System.out.println("");
             System.out.println(":: MAGAZINE ::");
             System.out.println("");
@@ -105,4 +111,5 @@ public class Coordinador {
      private static void makeReport(Date date){
          
      }
+     
 }
