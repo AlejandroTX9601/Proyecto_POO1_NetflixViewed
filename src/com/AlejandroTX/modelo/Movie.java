@@ -120,7 +120,7 @@ public class Movie {
     /**
      * @return the viewed
      */
-    public boolean isViewed() {
+    public boolean getIsViewed() {
         return viewed;
     }
 

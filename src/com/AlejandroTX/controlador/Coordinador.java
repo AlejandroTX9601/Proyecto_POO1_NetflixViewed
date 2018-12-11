@@ -5,7 +5,13 @@
  */
 package com.AlejandroTX.controlador;
 
+import com.AlejandroTX.modelo.Book;
+import com.AlejandroTX.modelo.Chapter;
+import com.AlejandroTX.modelo.Movie;
+import com.AlejandroTX.modelo.Serie;
 import com.AlejandroTX.vista.*;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -27,7 +33,7 @@ public class Coordinador {
             + "5.- Report\n"
             + "6.- Report today\n"
             + "0.- Exit");            
-            //leer la respuest de usuario
+            //leer la respuesta de usuario
             Scanner input = new Scanner(System.in);
             int response= input.nextInt();
             switch(response){
@@ -106,10 +112,86 @@ public class Coordinador {
         } while (exit !=0);
     }
    private static void makeReport(){
+                makeReport makeReport = new makeReport();
+		makeReport.setNameFile("reporte");
+		makeReport.setExtension("txt");
+		makeReport.setTitle(":: VISTOS ::");
+		String contentReport = "";
+		
+		for (Movie Movie:Movie) {
+			if (Movie.getIsViewed()) {
+				contentReport += Movie.toString() + "\n";
+				
+			}
+		}
+		
+		for (Serie Serie : Serie) {
+			ArrayList<Chapter> chapters = Serie.getChapters();
+			for (Chapter chapter : chapters) {
+				if (chapter.getIsViewed()) {
+					contentReport += chapter.toString() + "\n";
+					
+				}
+			}	
+		}
+		
+		
+		for (Book Book:Book) {
+			if (Book.getIsReaded()) {
+				contentReport += Book.toString() + "\n";
+				
+			}
+		}
+
+		makeReport.setContent(contentReport);
+		makeReport.makeReport();
+		System.out.println("Reporte Generado");
+		System.out.println();
    
     }
      private static void makeReport(Date date){
-         
-     }
-     
-}
+       SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd-h-m-s-S");
+		String dateString = df.format(date);
+		makeReport makeReport = new makeReport();
+		
+		makeReport.setNameFile("reporte" + dateString);
+		makeReport.setExtension("txt");
+		makeReport.setTitle(":: VISTOS ::");
+		
+		
+		SimpleDateFormat dfNameDays = new SimpleDateFormat("E, W MMM Y");
+		dateString = dfNameDays.format(date);
+		String contentReport = "Date: " + dateString + "\n\n\n";
+		
+		for (Movie Movie : Movie) {
+			if (Movie.getIsViewed()) {
+				contentReport += Movie.toString() + "\n";
+				
+			}
+		}
+		
+		for (Serie Serie : Serie) {
+			ArrayList<Chapter> chapters = Serie.getChapters();
+			for (Chapter chapter : chapters) {
+				if (chapter.getIsViewed()) {
+					contentReport += chapter.toString() + "\n";
+					
+				}
+			}
+		}
+		
+		for (Book Book : Book) {
+			if (Book.getIsReaded()) {
+				contentReport += Book.toString() + "\n";
+				
+			}
+		}
+		makeReport.setContent(contentReport);
+		makeReport.makeReport();
+		
+		System.out.println("Reporte Generado");
+		System.out.println();
+	}
+	  
+     }  
+

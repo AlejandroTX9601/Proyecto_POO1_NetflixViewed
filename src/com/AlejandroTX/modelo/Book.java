@@ -122,7 +122,7 @@ public class Book {
     /**
      * @return the readed
      */
-    public boolean isReaded() {
+    public boolean getIsReaded() {
         return readed;
     }
 
